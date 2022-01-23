@@ -25,6 +25,7 @@ class Tuya_SimpleSwitch extends IPSModule
 
         $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Switch', 0);
         $this->RegisterVariableBoolean('Tuya_State', 'State', '~Switch');
+        $this->EnableAction('Tuya_State');
         $this->RegisterVariableString('Tuya_Status', 'Status');
     }
 
