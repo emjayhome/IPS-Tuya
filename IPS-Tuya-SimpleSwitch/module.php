@@ -23,8 +23,7 @@ class Tuya_SimpleSwitch extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
-        $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Switch', 0);
-        $this->RegisterVariableBoolean('Tuya_State', 'State', '~Switch');
+        $this->RegisterVariableBoolean('Tuya_State', 'State');
         $this->EnableAction('Tuya_State');
         $this->RegisterVariableString('Tuya_Status', 'Status');
     }
@@ -105,7 +104,7 @@ class Tuya_SimpleSwitch extends IPSModule
         $Server['Topic'] = $Topic;
         $Server['Payload'] = $Payload;
         $ServerJSON = json_encode($Server, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'MQTT Server', $ServerJSON, 0);
+        $this->SendDebug(__FUNCTION__ . ' MQTT Server', $ServerJSON, 0);
         $resultServer = @$this->SendDataToParent($ServerJSON);
 
         if ($resultServer === false) {
