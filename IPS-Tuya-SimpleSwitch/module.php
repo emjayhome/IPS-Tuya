@@ -33,7 +33,7 @@ class Tuya_SimpleSwitch extends IPSModule
     {
         switch ($Ident) {
             case 'Tuya_State':
-                $this->SwitchMode($Value);
+                return $this->SwitchMode($Value);
                 break;
             }
     }
@@ -90,7 +90,7 @@ class Tuya_SimpleSwitch extends IPSModule
         } else {
             $Payload = 'off';
         }
-        $this->sendMQTT($Topic, $Payload);
+        return $this->sendMQTT($Topic, $Payload);
     }
 
     private function sendMQTT($Topic, $Payload)
@@ -108,27 +108,12 @@ class Tuya_SimpleSwitch extends IPSModule
         $this->SendDebug(__FUNCTION__ . 'MQTT Server', $ServerJSON, 0);
         $resultServer = @$this->SendDataToParent($ServerJSON);
 
-        //MQTT Client
-        $Buffer['PacketType'] = 3;
-        $Buffer['QualityOfService'] = 0;
-        $Buffer['Retain'] = false;
-        $Buffer['Topic'] = $Topic;
-        $Buffer['Payload'] = $Payload;
-        $BufferJSON = json_encode($Buffer, JSON_UNESCAPED_SLASHES);
-
-        $Client['DataID'] = '{97475B04-67C3-A74D-C970-E9409B0EFA1D}';
-        $Client['Buffer'] = $BufferJSON;
-
-        $ClientJSON = json_encode($Client);
-        $this->SendDebug(__FUNCTION__ . 'MQTT Client', $ClientJSON, 0);
-        $resultClient = @$this->SendDataToParent($ClientJSON);
-
-        if ($resultServer === false && $resultClient === false) {
+        if ($resultServer === false) {
             $last_error = error_get_last();
             echo $last_error['message'];
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
