@@ -126,6 +126,9 @@ class Tuya_SimpleSwitch extends IPSModule
         if ($resultServer === false && $resultClient === false) {
             $last_error = error_get_last();
             echo $last_error['message'];
+            return true;
+        } else {
+            return false;
         }
     }
 
