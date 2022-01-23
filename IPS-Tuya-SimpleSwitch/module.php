@@ -23,7 +23,8 @@ class Tuya_SimpleSwitch extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
-        $this->RegisterVariableBoolean('Tuya_State', 'State');
+        $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Switch', 0);
+        $this->RegisterVariableBoolean('Tuya_State', 'State', '~Switch');
         $this->EnableAction('Tuya_State');
         $this->RegisterVariableString('Tuya_Status', 'Status');
     }
