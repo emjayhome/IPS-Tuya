@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 class TuyaSimpleSwitch extends IPSModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
 
     public function Create()
     {
