@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class TuyaSimpleSwitch extends IPSModule
+class Tuya_SimpleSwitch extends IPSModule
 {
 
     public function Create()
