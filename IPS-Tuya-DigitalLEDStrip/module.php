@@ -174,7 +174,7 @@ class Tuya_DigitalLEDStrip extends IPSModule
         if ($resultServer === false) {
             $last_error = error_get_last();
             echo $last_error['message'];
-            return true;
+            return false;
         } else {
             return true;
         }
