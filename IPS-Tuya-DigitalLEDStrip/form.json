@@ -1,0 +1,6 @@
+{
+    "elements":
+    [
+      { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "Tuya MQTT Topic" }
+    ]
+}
